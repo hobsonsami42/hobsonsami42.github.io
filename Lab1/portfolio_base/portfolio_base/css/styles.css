@@ -1,0 +1,87 @@
+body {
+    background-color:lightyellow;
+    color:royalblue;
+    header, main, nav, footer {
+        text-align:center;
+    }
+
+    footer {
+        text-align:center;
+        color: #0500ff;
+        font-size: 0.75em;
+    }
+}
+nav a { /*links within "nav" container */
+    padding:15px;
+    padding-bottom:4px;
+    font-size: 1.8em;
+    text-decoration: none; /* removes underline */
+    color: darkslateblue; /* by default, links are blue */
+}
+
+nav a:hover { /* psuedo class */
+    border-bottom:2px darkblue solid;
+    font-size: 2em;
+    transition: .9s; /*transition effect */
+}
+footer img {
+    width: 200px;
+    height: auto;
+    margin-top: 10px;
+}
+nav a.active {
+    border-bottom: 3px solid darkblue;
+    font-weight: bold;
+    color: darkcyan;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+table {
+    margin: 30px auto 0 auto;
+}
+
+td {
+    padding-right: 10px;
+    font-size: 1.3em;
+}
+
+td strong {
+    color: powderblue;
+}
+
+#table-header {
+    background-color: #433fe8;
+}
+
+.table-row {
+    background-color: #040346;
+}
+
+ul {
+    width:500px;
+    margin: 0 auto;
+    text-align: left;
+}
+.hobby {
+    color:dodgerblue;
+}
+
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+h1 {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2.5em;
+}
