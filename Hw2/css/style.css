@@ -178,10 +178,12 @@ input:focus {
 }
 
 .site-footer {
+    max-width: 900px;
+    margin: 0 auto;
     text-align: center;
-    padding: 12px;
-    margin-top: 30px;
-    font-size: 0.9rem;
-    color: black;
-    opacity: 0.85;
+    padding: 15px;
+    font-size: 0.95rem;
+    background-color: black;
+    color: white;
+    border-top: 3px solid #306230;
 }
