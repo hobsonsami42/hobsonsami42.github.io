@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Guess the Number!</h1>
+        <h2>Guess a number between 1 and 99 in seven attempts!</h2>
+        <div class="game-box">
+            <label for="playerGuess">Enter a guess:</label>
+            <input type="number" id="playerGuess" min="1" max="99">
+            <button id="guessBtn">Guess</button>
+            <button id="resetBtn">Play Again!</button>
+
+            <div id="feedback"></div>
+
+            <div class="info-row">
+                <strong>Attempts Left:</strong>
+                <span id="attemptsLeft">7</span>
+            </div>
+            <div class="info-row">
+                <strong>Previous Guesses:</strong>
+                <span id="guesses"></span>
+            </div>
+            <div class="scoreboard">
+                <div class="score-card">
+                    <span class="score-label">Wins</span>
+                    <span id="wins">0</span>
+                </div>
+                <div class="score-card">
+                    <span class="score-label">Losses</span>
+                    <span id="losses">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        CST336 Internet Programming. 2026&copy; Hobson <br>
+    </footer>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
