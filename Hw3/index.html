@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sami’s Multiverse Character Finder</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
@@ -20,9 +20,10 @@
     </header>
 
     <section class="search-box">
+        <h2 class="visually-hidden">Character Search Form</h2>
         <form id="characterForm">
             <label for="name">Character Name</label>
-            <input type="text" id="name" name="name" placeholder="Try Rick, Morty..."/>
+            <input type="text" id="name" name="name" placeholder="Try Rick, Morty...">
 
             <label for="species">Species</label>
             <select id="species">
@@ -40,7 +41,10 @@
         <p id="message" class="message"></p>
     </section>
 
-    <section id="results" class="results"></section>
+    <section>
+        <h2 class="visually-hidden">Search Results</h2>
+        <div id="results" class="results"></div>
+    </section>
 </div>
 
 <footer class="text-center mt-3 small">
