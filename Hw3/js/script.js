@@ -4,6 +4,9 @@ const speciesSelect = document.getElementById("species");
 const results = document.getElementById("results");
 const message = document.getElementById("message");
 const clearBtn = document.getElementById("clearBtn");
+const searchSummary = document.getElementById("searchSummary");
+const featuredCharacter = document.getElementById("featuredCharacter");
+const resultsHeading = document.getElementById("resultsHeading");
 
 form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -13,6 +16,9 @@ form.addEventListener("submit", async function (e) {
 
     results.innerHTML = "";
     message.textContent = "";
+    featuredCharacter.innerHTML = "";
+    resultsHeading.style.display = "none";
+    searchSummary.textContent = "";
 
     if (name === "") {
         message.textContent = "Please enter a name.";
@@ -45,11 +51,36 @@ form.addEventListener("submit", async function (e) {
         const data = await response.json();
         message.textContent = `Found ${data.results.length} result(s)!`;
 
-        data.results.forEach(character => {
+        searchSummary.textContent = `Search term: ${name} | Filter: ${species || "Any Species"} | ${data.results.length} character(s) found`;
 
-            const statusColor =
-                character.status === "Alive" ? "limegreen" :
-                    character.status === "Dead" ? "red" : "#93c5fd";
+        resultsHeading.style.display = "block";
+
+        const firstCharacter = data.results[0];
+        const remainingCharacters = data.results.slice(1);
+
+        const featuredStatusColor =
+            firstCharacter.status === "Alive" ? "limegreen" :
+                firstCharacter.status === "Dead" ? "red" : "#93c5fd";
+
+        featuredCharacter.innerHTML = `
+    <div class="featured-card">
+        <img src="${firstCharacter.image}" alt="${firstCharacter.name}">
+        <div class="featured-content">
+            <p class="featured-label">Featured Character</p>
+            <h3>${firstCharacter.name}</h3>
+            <p><strong>Status:</strong>
+                <span style="color:${featuredStatusColor}; font-weight:600;">${firstCharacter.status}</span>
+            </p>
+            <p><strong>Species:</strong> ${firstCharacter.species}</p>
+            <p><strong>Gender:</strong> ${firstCharacter.gender}</p>
+            <p><strong>Origin:</strong> ${firstCharacter.origin.name}</p>
+            <p><strong>Location:</strong> ${firstCharacter.location.name}</p>
+        </div>
+    </div>
+`;
+
+        remainingCharacters.forEach(character => {
+
 
             const card = document.createElement("div");
             card.classList.add("card");
@@ -57,9 +88,7 @@ form.addEventListener("submit", async function (e) {
                 <img src="${character.image}" alt="${character.name}">
                 <div class="card-content">
                     <h3>${character.name}</h3>
-                    <p><strong>Status:</strong>
-                        <span style="color:${statusColor}; font-weight:600;">${character.status}</span>
-                    </p>
+                    <p><strong>Status:</strong> <span class="status-pill ${character.status.toLowerCase()}">${character.status}</span></p>
                     <p><strong>Species:</strong> ${character.species}</p>
                     <p><strong>Gender:</strong> ${character.gender}</p>
                     <p><strong>Origin:</strong> ${character.origin.name}</p>
@@ -82,4 +111,7 @@ clearBtn.addEventListener("click", function () {
     speciesSelect.value = "";
     message.textContent = "";
     results.innerHTML = "";
+    searchSummary.textContent = "";
+    featuredCharacter.innerHTML = "";
+    resultsHeading.style.display = "none";
 });
