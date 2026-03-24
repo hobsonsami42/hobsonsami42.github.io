@@ -1,0 +1,30 @@
+<%
+const currentPlanetName = typeof planetName !== 'undefined' ? planetName : '';
+const currentPlanetInfo = typeof planetInfo !== 'undefined' ? planetInfo : {};
+%>
+
+<%- include('partials/header.ejs') %>
+
+<h1><%= currentPlanetName %></h1>
+
+<img src="<%= currentPlanetInfo.image %>" alt="<%= currentPlanetName %>" width="400">
+
+<p><%= currentPlanetInfo.description %></p>
+
+<ul style="list-style: none; padding: 0;">
+    <% Object.entries(currentPlanetInfo).forEach(([key, value]) => { %>
+        <% if (key !== 'image' && key !== 'description' && key !== 'websiteLink') { %>
+            <li><strong><%= key %>:</strong> <%= value %></li>
+        <% } %>
+    <% }) %>
+</ul>
+
+<% if (currentPlanetInfo.websiteLink) { %>
+    <p>
+        <a href="<%= currentPlanetInfo.websiteLink %>" target="_blank" style="color:white;">
+            View on NASA website
+        </a>
+    </p>
+<% } %>
+
+<%- include('partials/footer.ejs') %>

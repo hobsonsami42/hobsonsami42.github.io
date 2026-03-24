@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
+    background-color: black;
+    margin: 0;
+}
+
+nav {
+    padding: 18px 0;
+}
+
+nav a {
+    margin: 10px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+img {
+    max-width: 400px;
+    height: auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+}
+
+li {
+    margin: 8px 0;
+    font-size: 18px;
+}
+
+footer {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}

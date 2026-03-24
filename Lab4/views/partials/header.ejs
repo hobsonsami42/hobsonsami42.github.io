@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body <% if (backgroundImage) { %> style="background-image: url('<%= backgroundImage %>'); background-size: cover; background-repeat: no-repeat; background-position: center;" <% } %>>
+<nav>
+    <a href="/">Home</a>
+
+    <% planetNames.forEach(planet => { %>
+        <a href="/planet?planetName=<%= planet %>"><%= planet %></a>
+    <% }) %>
+
+    <a href="/nasa">NASA</a>
+</nav>
+
+<hr>
