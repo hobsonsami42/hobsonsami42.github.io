@@ -35,49 +35,22 @@ function getFakeProfessionals(role, count) {
     }));
 }
 
-let weatherCache = {};
 
-async function getWeatherData(cityName) {
-    if (weatherCache[cityName]) {
-        return weatherCache[cityName];
-    }
-    const selectedCity = cityData[cityName] || cityData["Los Angeles"];
 
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${selectedCity.latitude}&longitude=${selectedCity.longitude}&current_weather=true`;
+async function getAdviceData() {
+    const response = await fetch("https://api.adviceslip.com/advice");
 
-    const response = await fetch(url);
-
-    if (!response.ok) {
-        const fallback = {
-            city: cityName in cityData ? cityName : "Los Angeles",
-            temperature: "N/A",
-            windSpeed: "N/A"
+    if(!response.ok) {
+        return {
+            advice: "Live API data is temporarily unavailable."
         };
-
-        weatherCache[cityName] = fallback;
-
-        return fallback;
     }
+
     const data = await response.json();
 
-    if (!data.current_weather) {
-        const fallback = {
-            city: cityName in cityData ? cityName : "Los Angeles",
-            temperature: "N/A",
-            windSpeed: "N/A"
-        };
-
-        weatherCache[cityName] = fallback;
-        return fallback;
-    }
-
-    const result = {
-        city: cityName in cityData ? cityName : "Los Angeles",
-        temperature: data.current_weather.temperature,
-        windSpeed: data.current_weather.windspeed
+    return {
+        advice: data.slip.advice
     };
-    weatherCache[cityName] = result;
-    return result;
 }
 
 app.get("/", (req, res) => {
@@ -112,23 +85,17 @@ app.get("/ai-careers", (req, res) => {
 });
 
 app.get("/ai-trends", async (req, res) => {
-    const selectedCity = req.query.city || "Los Angeles";
-
     try {
-        const weather = await getWeatherData(selectedCity);
+        const apiData = await getAdviceData();
         res.render("ai-trends", {
-            weather,
-            error: null,
-            cities: Object.keys(cityData),
-            selectedCity: weather.city
+            apiData,
+            error: null
         });
     } catch (err) {
         console.error("AI Trends route error:", err);
         res.render("ai-trends", {
-            weather: null,
+            apiData: null,
             error: "Sorry, live API data could not be loaded right now.",
-            cities: Object.keys(cityData),
-            selectedCity
         });
     }
 });

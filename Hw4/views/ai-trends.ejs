@@ -5,48 +5,25 @@
     <article>
         <p>
             Many AI systems depend on live information from web APIs. Real-time data can be used in smart assistants,
-            forecasting tools, traffic systems, and recommendation platforms.
+            forecasting tools, recommendation platforms, and decision-support systems.
         </p>
         <p>
-            The data below comes from the <strong>Open-Meteo API</strong> and is loaded in the backend through
+            The data below comes from a live Web API is loaded in the backend through
             <strong>index.mjs</strong>.
         </p>
         <p>
-            AI systems analyze this type of data to detect patterns, make predictions, and automate decisions in real time.
+            This example shows how software can retrieve fresh information from the internet and display it dynamically.
         </p>
         <img class="page-image" src="/img/ai-trends.jpg" alt="Visualization of real-time data used in AI systems">
     </article>
 </section>
 
 <section>
-    <h2>Select a California City</h2>
-    <article>
-        <form action="/ai-trends" method="GET">
-            <label for="city"><strong>Choose a city:</strong></label>
-            <select name="city" id="city">
-                <% cities.forEach(city => { %>
-                    <option value="<%= city %>" <%= city === selectedCity ? "selected" : "" %>>
-                        <%= city %>
-                    </option>
-                <% }) %>
-            </select>
-            <button type="submit">Show Weather</button>
-        </form>
-    </article>
-</section>
-
-<section>
-    <h2>Example of Real-Time Environmental Data</h2>
-
-    <% if (weather) { %>
+    <h2>Example of Live API Data</h2>
+    <% if (apiData) { %>
         <article>
-            <h3>Current <%= weather.city %> Conditions</h3>
-            <p><strong>Temperature:</strong> <%= weather.temperature %> °C</p>
-            <p><strong>Wind Speed:</strong> <%= weather.windSpeed %> km/h</p>
-            <p>
-                AI systems can use data like this for prediction models, smart agriculture, energy planning,
-                and automated alerts.
-            </p>
+            <h3>Advice from a Live API</h3>
+            <p><strong>Advice:</strong> <%= apiData.advice %></p>
         </article>
     <% } else { %>
         <article>
@@ -55,12 +32,13 @@
     <% } %>
 </section>
 
+
 <section>
     <h2>Source</h2>
     <ul class="source-list">
         <li>
-            <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">
-                Open-Meteo API
+            <a href="https://api.adviceslip.com/" target="_blank" rel="noopener noreferrer">
+                Advice Slip API
             </a>
         </li>
     </ul>
