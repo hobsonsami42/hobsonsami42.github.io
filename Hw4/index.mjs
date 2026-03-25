@@ -41,7 +41,15 @@ async function getWeatherData(cityName) {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${selectedCity.latitude}&longitude=${selectedCity.longitude}&current=temperature_2m,wind_speed_10m`;
 
     const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error(`Open-Meteo request failed: ${response.status} ${response.statusText}`);
+    }
     const data = await response.json();
+
+    if (!data.current) {
+        throw new Error(`Open-Mateo response missing current data: ${JSON.stringify(data)}`);
+    }
 
     return {
         city: cityName in cityData ? cityName : "Los Angeles",
@@ -93,6 +101,7 @@ app.get("/ai-trends", async (req, res) => {
             selectedCity: weather.city
         });
     } catch (err) {
+        console.error("AI Trends route error:", err);
         res.render("ai-trends", {
             weather: null,
             error: "Sorry, live API data could not be loaded right now.",
