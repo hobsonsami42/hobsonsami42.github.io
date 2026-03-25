@@ -74,7 +74,7 @@ async function getWeatherData(cityName) {
     const result = {
         city: cityName in cityData ? cityName : "Los Angeles",
         temperature: data.current_weather.temperature,
-        windSpeed: data.current_weather.windSpeed
+        windSpeed: data.current_weather.windspeed
     };
     weatherCache[cityName] = result;
     return result;
