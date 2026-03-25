@@ -35,7 +35,12 @@ function getFakeProfessionals(role, count) {
     }));
 }
 
+let weatherCache = {};
+
 async function getWeatherData(cityName) {
+    if (weatherCache[cityName]) {
+        return weatherCache[cityName];
+    }
     const selectedCity = cityData[cityName] || cityData["Los Angeles"];
 
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${selectedCity.latitude}&longitude=${selectedCity.longitude}&current_weather=true`;
@@ -43,25 +48,36 @@ async function getWeatherData(cityName) {
     const response = await fetch(url);
 
     if (!response.ok) {
-        console.log("API rate limited, using fallback data");
-
-        return {
-            city: cityName,
+        const fallback = {
+            city: cityName in cityData ? cityName : "Los Angeles",
             temperature: "N/A",
             windSpeed: "N/A"
         };
+
+        weatherCache[cityName] = fallback;
+
+        return fallback;
     }
     const data = await response.json();
 
     if (!data.current_weather) {
-        throw new Error(`Open-Mateo response missing current_weather data: ${JSON.stringify(data)}`);
+        const fallback = {
+            city: cityName in cityData ? cityName : "Los Angeles",
+            temperature: "N/A",
+            windSpeed: "N/A"
+        };
+
+        weatherCache[cityName] = fallback;
+        return fallback;
     }
 
-    return {
+    const result = {
         city: cityName in cityData ? cityName : "Los Angeles",
         temperature: data.current_weather.temperature,
-        windSpeed: data.current_weather.windspeed
+        windSpeed: data.current_weather.windSpeed
     };
+    weatherCache[cityName] = result;
+    return result;
 }
 
 app.get("/", (req, res) => {
