@@ -1,0 +1,69 @@
+<%- include("partials/header", { title: "AI Trends", pageTitle: "Real-Time Data in AI Systems" }) %>
+
+<section>
+    <h2>How AI Uses Live Data</h2>
+    <article>
+        <p>
+            Many AI systems depend on live information from web APIs. Real-time data can be used in smart assistants,
+            forecasting tools, traffic systems, and recommendation platforms.
+        </p>
+        <p>
+            The data below comes from the <strong>Open-Meteo API</strong> and is loaded in the backend through
+            <strong>index.mjs</strong>.
+        </p>
+        <p>
+            AI systems analyze this type of data to detect patterns, make predictions, and automate decisions in real time.
+        </p>
+        <img class="page-image" src="/img/ai-trends.jpg" alt="Visualization of real-time data used in AI systems">
+    </article>
+</section>
+
+<section>
+    <h2>Select a California City</h2>
+    <article>
+        <form action="/ai-trends" method="GET">
+            <label for="city"><strong>Choose a city:</strong></label>
+            <select name="city" id="city">
+                <% cities.forEach(city => { %>
+                    <option value="<%= city %>" <%= city === selectedCity ? "selected" : "" %>>
+                        <%= city %>
+                    </option>
+                <% }) %>
+            </select>
+            <button type="submit">Show Weather</button>
+        </form>
+    </article>
+</section>
+
+<section>
+    <h2>Example of Real-Time Environmental Data</h2>
+
+    <% if (weather) { %>
+        <article>
+            <h3>Current <%= weather.city %> Conditions</h3>
+            <p><strong>Temperature:</strong> <%= weather.temperature %> °C</p>
+            <p><strong>Wind Speed:</strong> <%= weather.windSpeed %> km/h</p>
+            <p>
+                AI systems can use data like this for prediction models, smart agriculture, energy planning,
+                and automated alerts.
+            </p>
+        </article>
+    <% } else { %>
+        <article>
+            <p><%= error %></p>
+        </article>
+    <% } %>
+</section>
+
+<section>
+    <h2>Source</h2>
+    <ul class="source-list">
+        <li>
+            <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">
+                Open-Meteo API
+            </a>
+        </li>
+    </ul>
+</section>
+
+<%- include("partials/footer") %>

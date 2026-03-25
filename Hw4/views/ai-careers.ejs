@@ -1,0 +1,74 @@
+<%- include("partials/header", { title: "AI Careers", pageTitle: "Careers in AI & Software Development" }) %>
+
+<section>
+    <h2>AI Career Paths</h2>
+    <article>
+        <p>
+            Artificial intelligence has created many new career opportunities in software development.
+            This page shows example AI-related professional profiles generated with the Node package
+            <strong>@faker-js/faker</strong>.
+        </p>
+        <p>
+            These examples help show the types of roles and companies that can exist in the AI field.
+        </p>
+        <img class="page-image" src="/img/ai-careers.jpg" alt="AI developer working on software systems">
+    </article>
+</section>
+
+<section>
+    <h2>Customize Career Profiles</h2>
+    <article>
+        <form action="/ai-careers" method="GET">
+            <label for="role"><strong>Choose a role:</strong></label>
+            <select name="role" id="role">
+                <option value="Any" <%= selectedRole === "Any" ? "selected" : "" %>>Any</option>
+                <% roleOptions.forEach(role => { %>
+                    <option value="<%= role %>" <%= role === selectedRole ? "selected" : "" %>>
+                        <%= role %>
+                    </option>
+                <% }) %>
+            </select>
+
+            <label for="count"><strong>Profiles:</strong></label>
+            <select name="count" id="count">
+                <% for (let i = 1; i <= 10; i++) { %>
+                    <option value="<%= i %>" <%= i === selectedCount ? "selected" : "" %>>
+                        <%= i %>
+                    </option>
+                <% } %>
+            </select>
+
+            <button type="submit">Generate Profiles</button>
+        </form>
+    </article>
+</section>
+
+<section>
+    <h2>Example AI Professionals</h2>
+    <p class="small-note">
+        Use the options below to generate different AI career profiles.
+    </p>
+
+    <% professionals.forEach(person => { %>
+        <article class="dev-card">
+            <h3><%= person.name %></h3>
+            <p><strong>Role:</strong> <%= person.role %></p>
+            <p><strong>Email:</strong> <%= person.email %></p>
+            <p><strong>Location:</strong> <%= person.city %></p>
+            <p><strong>Company:</strong> <%= person.company %></p>
+        </article>
+    <% }) %>
+</section>
+
+<section>
+    <h2>Source</h2>
+    <ul class="source-list">
+        <li>
+            <a href="https://fakerjs.dev/" target="_blank" rel="noopener noreferrer">
+                Faker.js Documentation
+            </a>
+        </li>
+    </ul>
+</section>
+
+<%- include("partials/footer") %>
