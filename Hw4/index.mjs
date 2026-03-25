@@ -38,7 +38,7 @@ function getFakeProfessionals(role, count) {
 async function getWeatherData(cityName) {
     const selectedCity = cityData[cityName] || cityData["Los Angeles"];
 
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${selectedCity.latitude}&longitude=${selectedCity.longitude}&current=temperature_2m,wind_speed_10m`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${selectedCity.latitude}&longitude=${selectedCity.longitude}&current_weather=true`;
 
     const response = await fetch(url);
 
