@@ -47,8 +47,8 @@ async function getWeatherData(cityName) {
     }
     const data = await response.json();
 
-    if (!data.current) {
-        throw new Error(`Open-Mateo response missing current data: ${JSON.stringify(data)}`);
+    if (!data.current_weather) {
+        throw new Error(`Open-Mateo response missing current_weather data: ${JSON.stringify(data)}`);
     }
 
     return {
