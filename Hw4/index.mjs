@@ -53,8 +53,8 @@ async function getWeatherData(cityName) {
 
     return {
         city: cityName in cityData ? cityName : "Los Angeles",
-        temperature: data.current.temperature_2m,
-        windSpeed: data.current.wind_speed_10m
+        temperature: data.current_weather.temperature,
+        windSpeed: data.current_weather.windspeed
     };
 }
 
