@@ -43,7 +43,13 @@ async function getWeatherData(cityName) {
     const response = await fetch(url);
 
     if (!response.ok) {
-        throw new Error(`Open-Meteo request failed: ${response.status} ${response.statusText}`);
+        console.log("API rate limited, using fallback data");
+
+        return {
+            city: cityName,
+            temperature: "N/A",
+            windSpeed: "N/A"
+        };
     }
     const data = await response.json();
 
