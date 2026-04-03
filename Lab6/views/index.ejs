@@ -1,0 +1,32 @@
+<%- include("partials/header") %>
+
+<div class="app-layout">
+    <%- include("partials/nav") %>
+
+    <main class="main-content">
+        <div class="card p-4">
+            <h1 class="mb-4">Famous Quotes - Admin Section</h1>
+            <p class="lead">Manage authors and quotes.</p>
+
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <a href="/authors" class="btn btn-warning w-100">Display Authors</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="/author/new" class="btn btn-success w-100">Add Authors</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="/quotes" class="btn btn-warning w-100">Display Quotes</a>
+                </div>
+                <div class="col-md-3">
+                    <a href="/quote/new" class="btn btn-success w-100">Add Quotes</a>
+                </div>
+            </div>
+        </div>
+
+        <%- include("partials/footer") %>
+    </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f1f1f1;
+}
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #274c77, #1b2a41);
+    color: white;
+    padding: 25px 20px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.sidebar a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.main-content {
+    flex: 1;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.card {
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin: 0;
+}
+
+.list-group-item {
+    border-radius: 10px !important;
+    margin-bottom: 10px;
+}

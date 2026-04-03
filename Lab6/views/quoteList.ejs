@@ -1,0 +1,35 @@
+<%- include("partials/header") %>
+
+<div class="app-layout">
+    <%- include("partials/nav") %>
+
+    <main class="main-content">
+        <div class="card p-4">
+            <h1 class="mb-4">Updating & Deleting Quotes</h1>
+
+            <div class="list-group">
+                <% for (let i = 0; i < quotes.length; i++) { %>
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <blockquote class="mb-1">"<%= quotes[i].quote %>"</blockquote>
+                                <small class="text-muted">
+                                    — <%= quotes[i].firstName %> <%= quotes[i].lastName %> | <%= quotes[i].category %> | Likes: <%= quotes[i].likes %>
+                                </small>
+                            </div>
+                            <div>
+                                <a href="/quote/edit?quoteId=<%= quotes[i].quoteId %>" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="/quote/delete?quoteId=<%= quotes[i].quoteId %>" class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+        <%- include("partials/footer") %>
+    </main>
+</div>
+
+</body>
+</html>

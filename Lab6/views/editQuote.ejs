@@ -1,0 +1,50 @@
+<%- include("partials/header") %>
+
+<div class="app-layout">
+    <%- include("partials/nav") %>
+
+    <main class="main-content">
+        <div class="card p-4">
+            <h1 class="mb-4">Update Quote</h1>
+
+            <form method="POST" action="/quote/edit" class="row g-3">
+                <input type="hidden" name="quoteId" value="<%= quoteInfo[0].quoteId %>">
+
+                <div class="col-12">
+                    <label class="form-label">Quote</label>
+                    <textarea name="quote" rows="4" class="form-control" required><%= quoteInfo[0].quote %></textarea>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Author</label>
+                    <select name="authorId" class="form-select" required>
+                        <% for (let i = 0; i < authors.length; i++) { %>
+                            <option value="<%= authors[i].authorId %>" <%= authors[i].authorId == quoteInfo[0].authorId ? "selected" : "" %>>
+                                <%= authors[i].firstName %> <%= authors[i].lastName %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Category</label>
+                    <input type="text" name="category" class="form-control" value="<%= quoteInfo[0].category %>" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Likes</label>
+                    <input type="number" name="likes" class="form-control" value="<%= quoteInfo[0].likes %>" min="0">
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary">Update Quote</button>
+                </div>
+            </form>
+        </div>
+
+        <%- include("partials/footer") %>
+    </main>
+</div>
+
+</body>
+</html>

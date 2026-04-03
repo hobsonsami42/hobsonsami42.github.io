@@ -1,0 +1,53 @@
+<%- include("partials/header") %>
+
+<div class="app-layout">
+    <%- include("partials/nav") %>
+
+    <main class="main-content">
+        <div class="card p-4">
+            <h1 class="mb-4">Add New Quote</h1>
+
+            <% if (typeof message !== "undefined" && message) { %>
+                <div class="alert alert-info"><%= message %></div>
+            <% } %>
+
+            <form method="POST" action="/quote/new" class="row g-3">
+                <div class="col-12">
+                    <label class="form-label">Quote</label>
+                    <textarea name="quote" rows="4" class="form-control" required></textarea>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Author</label>
+                    <select name="authorId" class="form-select" required>
+                        <option value="">Select Author</option>
+                        <% for (let i = 0; i < authors.length; i++) { %>
+                            <option value="<%= authors[i].authorId %>">
+                                <%= authors[i].firstName %> <%= authors[i].lastName %>
+                            </option>
+                        <% } %>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Category</label>
+                    <input type="text" name="category" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Likes</label>
+                    <input type="number" name="likes" class="form-control" value="0" min="0">
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary">Add Quote</button>
+                </div>
+            </form>
+        </div>
+
+        <%- include("partials/footer") %>
+    </main>
+</div>
+
+</body>
+</html>

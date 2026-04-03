@@ -1,0 +1,75 @@
+<%- include("partials/header") %>
+
+<div class="app-layout">
+    <%- include("partials/nav") %>
+
+    <main class="main-content">
+        <div class="card p-4">
+            <h1 class="mb-4">Add New Author</h1>
+
+            <% if (typeof message !== "undefined" && message) { %>
+                <div class="alert alert-info"><%= message %></div>
+            <% } %>
+
+            <form method="POST" action="/author/new" class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label">First Name</label>
+                    <input type="text" name="fName" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Last Name</label>
+                    <input type="text" name="lName" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" name="dob" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Date of Death</label>
+                    <input type="date" name="dod" class="form-control">
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Sex</label>
+                    <select name="sex" class="form-select" required>
+                        <option value="">Select</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Profession</label>
+                    <input type="text" name="profession" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Country</label>
+                    <input type="text" name="country" class="form-control" required>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Portrait URL</label>
+                    <input type="text" name="portrait" class="form-control" required>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Biography</label>
+                    <textarea name="biography" rows="5" class="form-control" required></textarea>
+                </div>
+
+                <div class="col-12">
+                    <button class="btn btn-primary">Add Author</button>
+                </div>
+            </form>
+        </div>
+
+        <%- include("partials/footer") %>
+    </main>
+</div>
+
+</body>
+</html>
